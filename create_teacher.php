@@ -53,7 +53,7 @@ if (!mysql_query($sql,$conn))
 		<fieldset>
 			<legend>Filling out the needed information for the teacher...</legend>
 			<label for="teacher_id">Teacher Login ID</label>
-			<input required type="text" name="teacher_id" id="teacher_id" autocomplete="off" autofocus />
+			<input required type="text" pattern="\d*"  name="teacher_id" id="teacher_id" autocomplete="off" autofocus />
 			<br/>
 			<label for="teacher_name">Teacher Name</label>
 			<input required type="text" name="teacher_name" id="teacher_name" autocomplete="off" autofocus />
@@ -61,11 +61,8 @@ if (!mysql_query($sql,$conn))
 			<label for="password">Password</label>
 			<input required type="password" name="password" id="password" />
 			<br/>
-			<label for="password">Confirm Password</label>
-			<input required type="password" name="password" id="password" />
-			<br/>
 			<label for="contact_no">Contact No.</label>
-			<input required type="text" name="contact_no" id="contact_no" />
+			<input required type="text" pattern="\d*"  name="contact_no" id="contact_no" />
 			<br/>
 			<label for="email_address">Email</label>
 			<input required type="email" name="email_address" id="email_address" />

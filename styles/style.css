@@ -229,11 +229,12 @@ input[type=color],
 input[type=number],
 input[type=submit],
 input[type=button],
-textarea {
+textarea, select {
 	border: 2px solid #00008B;
 	border-radius: 5px;
 	padding: 7px;
 	width: 300px;
+	background-color:#fff;
 }
 textarea {
 	height: 100px;

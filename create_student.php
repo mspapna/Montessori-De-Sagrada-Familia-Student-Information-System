@@ -52,7 +52,7 @@ if (!mysql_query($sql,$conn))
 		<fieldset>
 			<legend>Filling out the needed information for the student...</legend>
 			<label for="student_id">Student Login ID</label>
-			<input required type="text" name="student_id" id="student_id" autocomplete="off" autofocus />
+			<input required type="text"  pattern="\d*"  name="student_id" id="student_id" autocomplete="off" autofocus />
 			<br/>
 			<label for="student_name">Student Name</label>
 			<input required type="text" name="student_name" id="student_name" autocomplete="off" autofocus />
@@ -60,20 +60,31 @@ if (!mysql_query($sql,$conn))
 			<label for="password">Password</label>
 			<input required type="password" name="password" id="password" />
 			<br/>
-			<label for="password">Confirm Password</label>
-			<input required type="password" name="password" id="password" />
-			<br/>
 			<label for="course">Course</label>
-			<input required type="text" name="course" id="course" />
+			<select required type="text" name="course" id="course"  >
+			  <option>Computer Science</option>
+			  <option>Architecture</option>
+			  <option>Civil Engineering</option>
+			  <option>Electrical Engineering</option>
+			</select>
 			<br/>
 			<label for="year_level">Year Level</label>
-			<input required type="text" name="year_level" id="year_level" />
+			<select required name="year_level" id="year_level" >
+			  <option>Freshman</option>
+			  <option>Sophomore</option>
+			  <option>Junior</option>
+			  <option>Senior</option>
+			</select>
 			<br/>
 			<label for="gender">Gender</label>
-			<input required type="text" name="gender" id="gender" />
+			<select required name="gender" id="gender" >
+			  <option>Male</option>
+			  <option>Female</option>
+			  <option>Other</option>
+			</select>
 			<br/>
 			<label for="contact_no">Contact No.</label>
-			<input required type="text" name="contact_no" id="contact_no" />
+			<input required type="text"  pattern="\d*"  name="contact_no" id="contact_no" />
 			<br/>
 			<label for="email_address">Email</label>
 			<input required type="email" name="email_address" id="email_address" />

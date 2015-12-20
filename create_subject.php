@@ -56,7 +56,10 @@ if (!mysql_query($sql,$conn))
 			<input required type="text" name="subject_name" id="subject_name" autocomplete="off" autofocus />
 			<br/>
 			<label for="semester">Semester</label>
-			<input required type="text" name="semester" id="semester" />
+			<select required type="text" name="semester" id="semester" >
+			  <option>First Semester</option>
+			  <option>Second Semester</option>
+			</select>
 			<br/>
 			<label for="section">Section</label>
 			<input required type="text" name="section" id="section">

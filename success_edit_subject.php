@@ -22,7 +22,7 @@
 
     if(isset($_POST["submit"]))
 { 
-$sql="update student set subject_name='$_POST[subject_name], semester='$_POST[semester], section='$_POST[section]' where subject_id='$_POST[subject_id]'";
+$sql="update subject set subject_name='$_POST[subject_name]', semester='$_POST[semester]', section='$_POST[section]' where subject_id='" . $_GET['subject_id'] . "'";
 
 if (!mysql_query($sql,$conn))
   {
@@ -30,7 +30,7 @@ if (!mysql_query($sql,$conn))
   }
   else
   {
-    header('Location: success_create_student.php'); 
+    header('Location: view_subjects.php'); 
   }
 }
     
@@ -55,11 +55,16 @@ if (!mysql_query($sql,$conn))
 		<form action="" method="post">
 		<fieldset>
 			<legend>Edit the following information...</legend>
-			<label for="teacher_name">Subject Name</label>
-			<input required type="text" name="teacher_name" id="teacher_name" autocomplete="off" value="<?php echo $row[1]; ?>" />
+			<label for="subject_name">Subject Name</label>
+			<input required type="text" name="subject_name" id="subject_name" autocomplete="off" value="<?php echo $row[1]; ?>" />
 			<br/>
 			<label for="semester">Semester</label>
-			<input required type="text" name="semester" id="semester" value="<?php echo $row[2]; ?>" />
+			<select required type="text" name="semester" id="semester" >
+			  <option selected="selected"><?php echo $row[2]; ?></option>
+			  <option>First Semester</option>
+			  <option>Second Semester</option>
+			</select>
+
 			<br/>
 			<label for="section">Section</label>
 			<input required type="text" name="section" id="section" value="<?php echo $row[3]; ?>">

@@ -3,25 +3,25 @@
     $db = mysql_select_db("mdsf_student_information_system", $conn);
     session_start();// Starting Session
     // Storing Session
-    $user_check=$_SESSION['admin_id'];
+    $user_check=$_SESSION['student_id'];
     // SQL Query To Fetch Complete Information Of User
-    $ses_sql=mysql_query("SELECT * FROM administrator WHERE admin_id='" . $user_check . "'", $conn);
+    $ses_sql=mysql_query("SELECT * FROM student WHERE student_id='" . $user_check . "'", $conn);
     $row = mysql_fetch_assoc($ses_sql);
-    $login_session =$row['admin_id'];
-    $logged_user=$row['admin_name'];
+    $login_session =$row['student_id'];
+    $logged_user=$row['student_name'];
     if(!isset($login_session)){
-      mysql_close($conn); // Closing Connection
-      header('Location: index.php'); // Redirecting To Home Page
+      mysql_close(  $conn); // Closing Connection
+      header('Location: student.php'); // Redirecting To Home Page
     }
-
-    $sql = "SELECT * FROM student where student_id='". $_GET['student_id'] . "'";
+    
+    $sql = "SELECT * FROM student where student_id='". $login_session . "'";
     $result = mysql_query($sql);
 
     $row = mysql_fetch_row($result);
 
     if(isset($_POST["submit"]))
 { 
-$sql="update student set student_name='$_POST[student_name]', password='$_POST[password]', year_level='$_POST[year_level]', course='$_POST[course]', gender='$_POST[gender]', address='$_POST[address]', email='$_POST[email_address]', contact_no='$_POST[contact_no]', guardian='$_POST[guardian]' where student_id='$_POST[student_id]'";
+$sql="update student set password='$_POST[password]', gender='$_POST[gender]', address='$_POST[address]', email='$_POST[email_address]', contact_no='$_POST[contact_no]', guardian='$_POST[guardian]' where student_id='$_POST[student_id]'";
 
 if (!mysql_query($sql,$conn))
   {
@@ -29,10 +29,10 @@ if (!mysql_query($sql,$conn))
   }
   else
   {
-    header('Location: success_create_student.php'); 
+    header('Location: student.php'); 
   }
 }
-
+    
 ?>
 
 
@@ -45,26 +45,28 @@ if (!mysql_query($sql,$conn))
 </head>
 <body>
 
-  <?php include_once("template_pageTopAdminLogged.php"); ?>
+  <?php include_once("templates/template_pageTopLoggedStudent.php"); ?>
+
   <div id="pageMiddle">
   <section>
-    <h3>Administrator: <?php echo $logged_user; ?></h3>
-    <h4>Edit student profile.</h4>
-
+    <h3>Student: <?php echo $logged_user; ?></h3>
+    <p>You can only edit the fields within the white background.</p>
+  </section>
+  <?php include_once("student_menu.php"); ?>
 		<form action="" method="post">
 		<fieldset>
-			<legend>Edit the following information...</legend>
+			<legend>Edit only white fields...</legend>
 			<label for="student_id">Student Login ID</label>
-			<input required type="text"  pattern="\d*"  name="student_id" id="student_id" autocomplete="off" value="<?php echo $row[0]; ?>" autofocus />
+			<input required type="text"  pattern="\d*"  name="student_id" id="student_id" autocomplete="off" style="background-color: #ECEFF1;" value="<?php echo $row[0]; ?>" autofocus />
 			<br/>
 			<label for="student_name">Student Name</label>
-			<input required type="text" name="student_name" id="student_name" autocomplete="off" value="<?php echo $row[1]; ?>" autofocus />
+			<input required type="text" name="student_name" id="student_name" autocomplete="off" style="background-color: #ECEFF1;" value="<?php echo $row[1]; ?>" autofocus />
 			<br/> 
 			<label for="password">Password</label>
 			<input required type="password" name="password" id="password" value="<?php echo $row[2]; ?>" />
 			<br/>
 			<label for="course">Course</label>
-			<select required type="text" name="course" id="course" >
+			<select required type="text" name="course" id="course"  style="background-color: #ECEFF1;" >
 			  <option selected="selected"><?php echo $row[6]; ?></option>
 			  <option>Computer Science</option>
 			  <option>Architecture</option>
@@ -73,7 +75,7 @@ if (!mysql_query($sql,$conn))
 			</select>
 			<br/>
 			<label for="year_level">Year Level</label>
-			<select required name="year_level" id="year_level">
+			<select required name="year_level" id="year_level" style="background-color: #ECEFF1;" >
 			  <option selected="selected"><?php echo $row[7]; ?></option>
 			  <option>Freshman</option>
 			  <option>Sophomore</option>
@@ -105,11 +107,7 @@ if (!mysql_query($sql,$conn))
 			
 		</fieldset>
 		<input name="submit" type="submit" value="Submit" />
-  	</form>
-
-  <?php include_once("admin_menu.php"); ?>
-
-  </section>
+  	</form>  
   </div>
   <?php include_once("template_pageBottom.php"); ?>
 </body>
