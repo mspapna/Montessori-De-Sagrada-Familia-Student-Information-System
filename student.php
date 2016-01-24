@@ -1,6 +1,6 @@
+<?php include_once("connection_local.php"); ?>
+
 <?php
-    $conn = mysql_connect("localhost", "root", "ask");
-    $db = mysql_select_db("mdsf_student_information_system", $conn);
     session_start();// Starting Session
     // Storing Session
     $user_check=$_SESSION['student_id'];
